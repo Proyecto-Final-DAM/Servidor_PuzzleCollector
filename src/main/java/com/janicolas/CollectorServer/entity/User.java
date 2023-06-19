@@ -59,6 +59,11 @@ public class User {
 
     //Getter y Setter Adicionales
 
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = "User_" + id + ".jpg";
+    }
+
     public String getIconImg() {
         Path path = Path.of("src//main//resources//static/userIconImages/" + iconPath);
         try {

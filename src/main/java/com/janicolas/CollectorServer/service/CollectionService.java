@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CollectionService {
@@ -30,11 +31,29 @@ public class CollectionService {
         return repository.findByUserId(id);
     }
 
+    public Optional<Collection> findByUserIdAndPuzzleId(Long userId, Long puzzleId){
+        return repository.findByUserIdAndPuzzleId(userId, puzzleId);
+    }
+
     public Boolean existsByPuzzleIdAndUserId(Long puzzle_id, Long user_id){
         return repository.existsByPuzzleIdAndUserId(puzzle_id,user_id);
     }
 
     public Collection create(Long userId, Long puzzleId, String notes){
+        Collection collection = new Collection();
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
+        Puzzle puzzle = puzzleRepository.findById(puzzleId).orElseThrow(() -> new NotFoundException("Puzzle not found"));
+
+        collection.setId(new CollectionId(userId, puzzleId));
+        collection.setUser(user);
+        collection.setPuzzle(puzzle);
+        collection.setNotes(notes);
+
+        return repository.save(collection);
+    }
+
+    public Collection update(Long userId, Long puzzleId, String notes){
         Collection collection = new Collection();
 
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));

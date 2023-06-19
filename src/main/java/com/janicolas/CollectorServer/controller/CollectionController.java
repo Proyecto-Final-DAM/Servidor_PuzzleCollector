@@ -6,6 +6,7 @@ import com.janicolas.CollectorServer.service.CollectionService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/collection")
@@ -22,6 +23,11 @@ public class CollectionController {
         return service.findByUserId(id);
     }
 
+    @GetMapping
+    public Optional<Collection> getCollectionByUserIdAndPuzzleId(@RequestParam Long userId, @RequestParam Long puzzleId){
+        return service.findByUserIdAndPuzzleId(userId, puzzleId);
+    }
+
     @GetMapping("/exists")
     public Boolean existsCollection(@RequestParam Long puzzleId, @RequestParam Long userId){
         return service.existsByPuzzleIdAndUserId(puzzleId,userId);
@@ -31,6 +37,12 @@ public class CollectionController {
     public Collection createCollection(@RequestParam Long userId, @RequestParam Long puzzleId,
                                        @RequestParam(value = "notes", required = false) String notes){
         return service.create(userId, puzzleId, notes);
+    }
+
+    @PutMapping
+    public Collection updateCollection(@RequestParam Long userId, @RequestParam Long puzzleId,
+                                       @RequestParam(value = "notes", required = false) String notes){
+        return service.update(userId, puzzleId, notes);
     }
 
     @DeleteMapping("/delete")

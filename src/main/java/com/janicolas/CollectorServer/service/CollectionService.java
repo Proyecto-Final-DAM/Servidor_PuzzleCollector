@@ -10,7 +10,6 @@ import com.janicolas.CollectorServer.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
-import java.sql.Time;
 import java.util.List;
 
 @Service
@@ -35,7 +34,7 @@ public class CollectionService {
         return repository.existsByPuzzleIdAndUserId(puzzle_id,user_id);
     }
 
-    public Collection create(Long userId, Long puzzleId, Time best){
+    public Collection create(Long userId, Long puzzleId, String notes){
         Collection collection = new Collection();
 
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
@@ -44,7 +43,7 @@ public class CollectionService {
         collection.setId(new CollectionId(userId, puzzleId));
         collection.setUser(user);
         collection.setPuzzle(puzzle);
-        collection.setBest(best);
+        collection.setNotes(notes);
 
         return repository.save(collection);
     }

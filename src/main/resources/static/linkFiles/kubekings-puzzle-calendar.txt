@@ -1,1 +1,4 @@
 https://kubekings.com/rompecabezas-de-plastico/puzzle-calendar.html#/302-version-espana || KubeKings
+
+#TutorialLinks
+https://keiichiw.github.io/a-puzzle-a-day-solver/ || Web

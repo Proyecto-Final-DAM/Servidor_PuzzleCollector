@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
-
 @Entity
 @Table(name = "collection")
 @Getter
@@ -32,5 +30,5 @@ public class Collection {
     private Puzzle puzzle;
 
     @Column
-    private Time best;
+    private String notes;
 }

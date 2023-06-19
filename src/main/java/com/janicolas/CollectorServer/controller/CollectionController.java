@@ -5,7 +5,6 @@ import com.janicolas.CollectorServer.entity.CollectionId;
 import com.janicolas.CollectorServer.service.CollectionService;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
 import java.util.List;
 
 @RestController
@@ -30,8 +29,8 @@ public class CollectionController {
 
     @PostMapping
     public Collection createCollection(@RequestParam Long userId, @RequestParam Long puzzleId,
-                                       @RequestParam(value = "best", required = false) Time best){
-        return service.create(userId, puzzleId, best);
+                                       @RequestParam(value = "notes", required = false) String notes){
+        return service.create(userId, puzzleId, notes);
     }
 
     @DeleteMapping("/delete")

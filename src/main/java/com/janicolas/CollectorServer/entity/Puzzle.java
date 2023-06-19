@@ -55,8 +55,7 @@ public class Puzzle {
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "puzzle")
     private List<Collection> collection;
 
-    //Getters y Setters Adicionales
-
+    //Getters Adicionales
 
     public String getPuzzleImg() {
         String path = "src/main/resources/static/puzzleImages/" + imagePath;
